@@ -1,1 +1,131 @@
-/* write your override styles here */
+/* --- Base Styles for All Tags (Lowest Specificity) --- */
+/*
+   These styles will apply to ALL your <div> elements
+   that are intended to be graffiti tags.
+   They will be easily overridden by more specific rules below.
+*/
+div {
+    min-width: 80px; /* Give them a basic size */
+    min-height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    color: white; /* Default text color */
+    display: flex; /* Helps in centering text if you add it later */
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif; /* A basic default font */
+    font-size: 1em;
+    padding: 5px;
+    box-sizing: border-box; /* Include padding/border in width/height */
+    position: absolute; /* Allows free positioning */
+}
+
+
+/* --- Styles for Tags by ID (Highest Specificity for Individual Tags) --- */
+/*
+   Use IDs to give unique styles to specific tags.
+   These styles will override almost any other general styles for that specific tag.
+*/
+#tag-1 {
+    background-color: #FF00FF; /* Bright Pink */
+    transform: rotate(-5deg); /* Slight rotation */
+    font-family: 'Permanent Marker', cursive; /* A more graffiti-like font */
+    font-size: 2em;
+    left: 50px;
+    top: 70px;
+    width: 150px;
+    height: 70px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Adds depth */
+}
+
+#tag-2 {
+    background-color: #00FFFF; /* Cyan */
+    font-family: 'Bungee Outline', cursive; /* Another stylized font example */
+    font-size: 1.8em;
+    left: 250px;
+    top: 120px;
+    color: black; /* Different text color */
+    width: 120px;
+    height: 60px;
+    border-radius: 10px; /* Slightly rounded corners */
+}
+
+/* --- Styles for Tags by Class (Medium Specificity for Groups of Tags) --- */
+/*
+   Use classes to apply shared styles to multiple tags.
+   These will override the base `div` styles.
+*/
+.slick {
+    /* Styles common to tags with the 'slick' class */
+    border: 3px solid yellow; /* Highlight slick tags */
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.5); /* Yellow glow */
+    z-index: 5; /* Bring slightly to front */
+}
+
+.wicked {
+    /* Styles common to tags with the 'wicked' class (only tag-3 has this) */
+    text-transform: uppercase; /* All caps */
+    font-weight: bold;
+}
+
+/* Specific combination: A tag that is both 'slick' AND 'wicked' */
+.slick.wicked {
+    background-color: purple; /* Override background if both classes are present */
+    transform: rotate(10deg) scale(1.1); /* More exaggerated transformation */
+}
+
+
+/* --- Styles for Tags within Specific Containers (Contextual Specificity) --- */
+/*
+   Use parent-child relationships to make styles more specific,
+   applying only when tags are inside a particular container.
+*/
+.parent div {
+    /* Styles that apply to ALL divs inside an element with class 'parent' */
+    background-color: rgba(0, 255, 0, 0.4); /* Green tint for 'parent' tags */
+    border: 1px dashed white; /* Dashed border */
+    position: relative; /* If you want to position child tags relative to their parent */
+    /* If you want them to flow normally within the parent: */
+    /* display: inline-block;
+    margin: 10px;
+    top: auto;
+    left: auto; */
+}
+
+/* A specific tag inside a 'parent' container */
+.parent #tag-4 {
+    background-color: orange;
+    border-radius: 50%; /* Make it circular */
+    width: 60px;
+    height: 60px;
+    /* If you want it to be absolutely positioned within the parent: */
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+/* A 'slick' tag inside a 'parent' container */
+.parent .slick {
+    font-style: italic; /* Add italics to slick tags within parents */
+}
+
+/* The most specific for tag-5: it's inside a 'parent', has ID 'tag-5', and class 'slick' */
+.parent #tag-5.slick {
+    background: linear-gradient(45deg, #FF69B4, #00FF00); /* Hot pink to green gradient */
+    border: none; /* Remove any previous borders */
+    text-shadow: 1px 1px 2px black;
+    font-size: 1.6em;
+    left: 80px;
+    top: 30px;
+    width: 100px;
+    height: 50px;
+}
+
+/* --- Example of !important (Use with Extreme Caution) --- */
+/*
+   If, for some reason, your #tag-7's border wasn't changing from another CSS file,
+   you could use !important, but try to avoid it.
+*/
+#tag-7 {
+    border: 5px solid red !important; /* Forces a red border */
+}
